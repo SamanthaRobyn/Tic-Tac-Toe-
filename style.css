@@ -1,0 +1,53 @@
+body {
+	background: black;
+}
+
+
+h1 {
+	font-family: 'Shadows Into Light Two', cursive;
+	color: rgb(255,255,255);
+	font-size: 50px;
+	text-align: center;
+}
+
+button {
+	margin-left: 48%;
+}
+
+.cell1 {
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+
+.theBox {
+	width: 468px;
+	height: 468px;
+	border-style: solid;
+	border-color: white;
+	background-color: black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.allCellsAlways {
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	border-style: solid;
+	border-color: white;
+}
+
+.xclass {
+	background-image: url("file:///Users/SamanthaSamuels/Desktop/rsz_kitten.jpg");
+}
+
+.oclass {
+	 background-image: url("file:///Users/SamanthaSamuels/Desktop/cat.jpeg");
+   }
+ .blankclass {
+background-color: gray ;
+}
