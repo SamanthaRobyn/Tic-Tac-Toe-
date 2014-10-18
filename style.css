@@ -1,33 +1,83 @@
 body {
-	background: black;
+	background: rgb(164,212,216);
+	font-family: 'Shadows Into Light', cursive;
+	width: 100%;
+	
 }
+
+.xWinLeft {
+	font-color: black;
+	font-size: 30px;
+    position: absolute;
+    margin-left: 700px;
+    margin-bottom: 350px;
+    z-index: 1;
+}	
+.xWinRight {
+	font-color: black;
+	font-size: 30px;
+    position: absolute;
+    margin-right: 700px;
+    margin-bottom: 350px;
+	z-index: 1;
+}
+
+
+.oWin {
+	position: absolute;
+	z-index: 1;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+
+.catsGame {
+	background-color: yellow;
+}
+
 
 
 h1 {
-	font-family: 'Shadows Into Light Two', cursive;
-	color: rgb(255,255,255);
-	font-size: 50px;
+	color: white;
+	font-size: 65px;
 	text-align: center;
+	margin-bottom: 0;
+	margin-top: 0;
+
 }
 
-button {
-	margin-left: 48%;
+.button {
+	/*margin-left: 47%;
+	margin-top: 20px;
+	margin-bottom: 20px;*/
+	position: absolute;
+	top: 650px;
+	left: 680px;
+	background-color: black;
+	color: white;
+	border-top: 1px solid #96d1f8;
+	border-radius: 40px;
+	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+	box-shadow: rgba(0,0,0,1) 0 1px 0;
+	
 }
 
-.cell1 {
-	max-width: 100%;
-	height: auto;
-	width: auto;
-}
 
 .theBox {
 	width: 468px;
 	height: 468px;
 	border-style: solid;
-	border-color: white;
 	background-color: black;
 	margin-left: auto;
 	margin-right: auto;
+	box-shadow: 10px 10px 5px #888888;
+
+}
+
+.allCellsAlways:hover {
+	background-color: rgb(107,7,37);
+	border-color: white;
+	
 }
 
 .allCellsAlways {
@@ -35,19 +85,18 @@ button {
 	height: 150px;
 	display: inline-block;
 	float: left;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	border-style: solid;
 	border-color: white;
 }
 
 .xclass {
-	background-image: url("file:///Users/SamanthaSamuels/Desktop/rsz_kitten.jpg");
+	background-image: url("images/x.jpg");
 }
 
 .oclass {
-	 background-image: url("file:///Users/SamanthaSamuels/Desktop/cat.jpeg");
-   }
- .blankclass {
-background-color: gray ;
+	background-image: url("images/o.jpeg");
 }
+
+ 

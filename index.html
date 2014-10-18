@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html ng-app="TTTApp">
 <head>
-	<title>TTT Reference Step 1</title>
+	<title> TIC CAT TOE</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css' href="style.css">
+	<!-- AngularJS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script> 
+
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/1.0.21/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+	<!-- App javascript -->
 	<script src="main.js"></script>
-	<h1> Tic. <em>Cat.</em> Toe</h1> 
 </head>
 <body>
-	<div ng-show="PLAY MEOW!">this is a welcome message</div>   
-	<button ng-click="testJS()">PLAY</button>
-	<div ng-controller="TTTController">
-		<p>TTT Reference: Step 1</p>
-		CLICK COUNTER: {{movecounter}}
-		
-		<div class ="theBox">
-	 		<div ng-repeat="currentCell in cellList">
+	
+	<div ng-controller="TTTController" ng-model ="gameContainer">
+		{{gameContainer.gameState}}
+		<h1> TIC. <em>CAT.</em> TOE.</h1> 
+		<button class="button" x-ng-click="testJS()">RESET MEOW</button>
 
-				<div class="allCellsAlways" ng-click="playerPicks(currentCell)" 
-
-				ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status=='O'}">
-			
+		<div class="theBox">
+			<div ng-repeat="currentCell in gameContainer.cellListArray">
+				<div class="allCellsAlways" x-ng-click="playerPicks(currentCell)" 
+				x-ng-class="{xclass: currentCell.status=='X', oclass: currentCell.status=='O'}">
+			</div>
 		</div>
-	</div>
+
+		<div x-ng-class="{xWin : gameContainer.gameState == 1, oWin : gameContainer.gameState == 2, catsGame : gameContainer.gameState == 3}">
+		</div>
+			<div class="xWinLeft" x-ng-show="gameContainer.gameState == 1">Meow Meow Player 1!<img src="images/zombie-kitteh.gif"> 
+			</div>
+			<div class="xWinRight" x-ng-show="gameContainer.gameState == 1">Meow Meow Player 1!<img src="images/zombie-kitteh.gif">
+			</div>
+			<div class="oWinRight" x-ng-show="gameContainer.gameState == 2"><img src="images/Dancing kitten.gif">
+			</div>
+			<div class="oWinLeft" x-ng-show="gameContainer.gameState == 2"><img src="images/Dancing kitten.gif">
+			</div>
+
+	<div class="clearFix"></div>
 </div>
+
 <br>
-{{testString}}
+<!-- {{testString}} -->
 <p></p>
-	
+
 </div>
-	
+
 </body>
 </html>

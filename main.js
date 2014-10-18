@@ -1,135 +1,147 @@
-var TTTApp = angular.module('TTTApp', []);
+var TTTApp = angular.module('TTTApp', ["firebase"]);
+var FB;
+TTTApp.controller('TTTController', function($scope,$firebase) {
+  var ticTacRef = new Firebase("https://samticcattoeapp.firebaseio.com/");
+  $scope.remoteGameContainer =
+  $firebase(ticTacRef);
+  FB=($scope.remoteGameContainer);
 
-TTTApp.controller('TTTController', function ($scope) {
-	
-	$scope.testString = "Anuglar source, App, and Controller present" ;
 
-	//create something to store the status of the cells:
-$scope.cellList = [
-	{status: "0"},
-	{status: "1"},
-	{status: "2"},
-	{status: "3"},
-	{status: "4"},
-	{status: "5"},
-	{status: "6"},
-	{status: "7"},
-	{status: "8"}
-] ;
-	$scope.movecounter = 0 ;
+  ticTacRef.once("value", function(data) {
+    console.log(data.val());
 
-	$scope.playerPicks = function(thisCell) {
-		$scope.movecounter = $scope.movecounter + 1;
-		console.log("Cell was: " + thisCell.status);
-		if (($scope.movecounter % 2) == 1) {
-			thisCell.status = "X" ;
-		} else {
-			thisCell.status = "O";
-		}
-		console.log("Cell is now: " + thisCell.status);
+    console.log($scope.imPlayer);
 
-		
+    if(!data.val() || data.val().numPlayers == 2) {
+      $scope.imPlayer = 0;
+    }
+    else {
+      $scope.imPlayer = 1;
+    }
+    //Special Sauce
+    $scope.gameContainer = {
+      cellListArray: $scope.cellList,
+      moveCount: $scope.moveCounter,
+      numPlayers: $scope.imPlayer +1,
+      gameState: 0
+    };
 
-		if ($scope.cellList[0].status == "X" && 
-			$scope.cellList[1].status == "X" &&
-			$scope.cellList[2].status == "X" )   {
-			console.log("hello")
+    $scope.remoteGameContainer.$bind($scope, "gameContainer");
+    $scope.testJS();
+  });
 
-		}
-		if ($scope.cellList[3].status == "X" && 
-			$scope.cellList[4].status == "X" &&
-			$scope.cellList[5].status == "X" )   {
-			console.log("hello")
 
-	
-		}
-		if ($scope.cellList[6].status == "X" && 
-			$scope.cellList[7].status == "X" &&
-			$scope.cellList[8].status == "X" )   {
-			console.log("hello")
+  $scope.$watch('gameContainer', function() {
+    console.log('gameContainer changed!') ;
+  });
 
-	
-		}
-		if ($scope.cellList[0].status == "X" && 
-			$scope.cellList[3].status == "X" &&
-			$scope.cellList[6].status == "X" )   {
-			console.log("hello")
+  $scope.playerPicks = function(thisCell) {
 
-	}
-		if ($scope.cellList[1].status == "X" && 
-			$scope.cellList[4].status == "X" &&
-			$scope.cellList[7].status == "X" )   {
-			console.log("hello")
+    console.log("You are player : " + $scope.imPlayer.toString() + ".  moveCount:" + $scope.gameContainer.moveCount + ".status:" + thisCell.status);
+    if (thisCell.status == "X" || thisCell.status == "O" || $scope.imPlayer.toString() != ($scope.gameContainer.moveCount % 2)){
+      console.log("not your move!");
+      // This says that once a value is issued the cell cannot be clicked again
+      return;
 
-	}
-		if ($scope.cellList[2].status == "X" && 
-			$scope.cellList[5].status == "X" &&
-			$scope.cellList[8].status == "X" )   {
-			console.log("hello")
+      }
+    else {
+      $scope.gameContainer.moveCount ++ ;
+      console.log("Cell was: " + thisCell.status) ;
+      if (($scope.gameContainer.moveCount % 2) == 1) {
+        thisCell.status = "X" ;
+        determineWin("X") ;
+      } else {
+        thisCell.status = "O" ;
+        determineWin("O");
+      }
+      thisCell.clickNumber ++;
+      console.log("Cell is now: " + thisCell.status);
+      // return thisCell.status;
+    }
+  };
+  
+  // WINS!
+  function determineWin(xo) {
+    if ($scope.gameContainer.moveCount <= 4) {
+      return;
+    }
+    var currentPlayer = xo == "X" ? 1: 2; 
 
-	}
-		if ($scope.cellList[0].status == "X" && 
-			$scope.cellList[4].status == "X" &&
-			$scope.cellList[8].status == "X" )   {
-			console.log("hello")
+    if ($scope.gameContainer.cellListArray[0].status == xo &&
+        $scope.gameContainer.cellListArray[1].status == xo &&
+        $scope.gameContainer.cellListArray[2].status == xo) {
 
-	}
-		if ($scope.cellList[2].status == "X" && 
-			$scope.cellList[4].status == "X" &&
-			$scope.cellList[6].status == "X" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[3].status == xo &&
+        $scope.gameContainer.cellListArray[4].status == xo &&
+        $scope.gameContainer.cellListArray[5].status == xo) {
 
-	}
-		if ($scope.cellList[0].status == "O" && 
-			$scope.cellList[1].status == "O" &&
-			$scope.cellList[2].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[6].status == xo &&
+        $scope.gameContainer.cellListArray[7].status == xo &&
+        $scope.gameContainer.cellListArray[8].status == xo) {
 
-		}
-		if ($scope.cellList[3].status == "O" && 
-			$scope.cellList[4].status == "O" &&
-			$scope.cellList[5].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[0].status == xo &&
+        $scope.gameContainer.cellListArray[3].status == xo &&
+        $scope.gameContainer.cellListArray[6].status == xo) {
 
-	
-		}
-		if ($scope.cellList[6].status == "O" && 
-			$scope.cellList[7].status == "O" &&
-			$scope.cellList[8].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[1].status == xo &&
+        $scope.gameContainer.cellListArray[4].status == xo &&
+        $scope.gameContainer.cellListArray[7].status == xo) {
 
-	
-		}
-		if ($scope.cellList[0].status == "O" && 
-			$scope.cellList[3].status == "O" &&
-			$scope.cellList[6].status == "O" )   {
-			window.alert("You win!")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[2].status == xo &&
+        $scope.gameContainer.cellListArray[5].status == xo &&
+        $scope.gameContainer.cellListArray[8].status == xo) {
 
-	}
-		if ($scope.cellList[1].status == "O" && 
-			$scope.cellList[4].status == "O" &&
-			$scope.cellList[7].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[0].status == xo &&
+        $scope.gameContainer.cellListArray[4].status == xo &&
+        $scope.gameContainer.cellListArray[8].status == xo) {
 
-	}
-		if ($scope.cellList[2].status == "O" && 
-			$scope.cellList[5].status == "O" &&
-			$scope.cellList[8].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    if ($scope.gameContainer.cellListArray[2].status == xo &&
+        $scope.gameContainer.cellListArray[4].status == xo &&
+        $scope.gameContainer.cellListArray[6].status == xo) {
 
-	}
-		if ($scope.cellList[0].status == "O" && 
-			$scope.cellList[4].status == "O" &&
-			$scope.cellList[8].status == "O" )   {
-			console.log("hello")
+      $scope.gameContainer.gameState = currentPlayer;
+    }
+    
 
-	}
-		if ($scope.cellList[2].status == "O" && 
-			$scope.cellList[4].status == "O" &&
-			$scope.cellList[6].status == "O" )   {
-			console.log("hello")
+	// this will establish a cat's game 
+    if ($scope.gameContainer.moveCount == 9 && $scope.gameContainer.gameState == 0) {
+        $scope.gameContainer.gameState = 3;
+    } 
+    console.log("Kiss my ass",$scope.gameContainer.gameState)
+};
 
-	}
-	};
+  $scope.testJS = function() {
+    $scope.gameContainer.cellListArray = [
+
+    {status: "A"},
+    {status: "B"},
+    {status: "C"},
+    {status: "D"},
+    {status: "E"},
+    {status: "F"},
+    {status: "G"},
+    {status: "H"},
+    {status: "I"}
+    ];
+
+    $scope.gameContainer.moveCount = 0 ;
+
+    $scope.gameContainer.gameState = 0;
+
+  };
 
 });
