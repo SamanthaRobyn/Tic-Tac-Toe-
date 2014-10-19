@@ -8,7 +8,7 @@ body {
 	font-color: black;
 	font-size: 30px;
     position: absolute;
-    margin-left: 500px;
+    left: -20px;
     margin-bottom: 500px;
     z-index: 1;
 }	
@@ -26,7 +26,7 @@ body {
 	font-color: black;
 	font-size: 30px;
     position: absolute;
-    margin-left: 500px;
+    left: -20px;
     margin-bottom: 500px;
     z-index: 1;
 
@@ -42,7 +42,12 @@ body {
 }
 
 .catsGame {
-	background-color: yellow;
+	font-color: black;
+	font-size: 30px;
+    position: absolute;
+    margin-right: auto;
+    margin-left: auto;
+    z-index: 1;
 }
 
 

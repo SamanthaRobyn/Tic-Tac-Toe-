@@ -6,6 +6,7 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
   $firebase(ticTacRef);
   FB=($scope.remoteGameContainer);
 
+$scope.testJS = function() {
   $scope.cellList = [
     {status: "A"},
     {status: "B"},
@@ -17,6 +18,7 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
     {status: "H"},
     {status: "I"}
   ];
+};
 
   $scope.moveCounter = 0;
 

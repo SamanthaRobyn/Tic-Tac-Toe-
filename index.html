@@ -29,13 +29,15 @@
 
 		<div x-ng-class="{xWin : gameContainer.gameState == 1, oWin : gameContainer.gameState == 2, catsGame : gameContainer.gameState == 3}">
 		</div>
-			<div class="xWinLeft" x-ng-show="gameContainer.gameState == 1">Meow Meow Player 1!<img src="images/zombie-kitteh.gif"> 
+			<div class="xWinLeft" x-ng-show="gameContainer.gameState == 1"><img src="images/zombie-kitteh.gif"> 
 			</div>
-			<div class="xWinRight" x-ng-show="gameContainer.gameState == 1">Meow Meow Player 1!<img src="images/zombie-kitteh.gif">
+			<div class="xWinRight" x-ng-show="gameContainer.gameState == 1"><img src="images/zombie-kitteh.gif">
 			</div>
 			<div class="oWinRight" x-ng-show="gameContainer.gameState == 2"><img src="images/Dancing kitten.gif">
 			</div>
 			<div class="oWinLeft" x-ng-show="gameContainer.gameState == 2"><img src="images/Dancing kitten.gif">
+			</div>
+			<div class="catsGame" x-ng-show="gameContainer.gameState == 3"><img src="images/kittensgame.gif">
 			</div>
 
 	<div class="clearFix"></div>
