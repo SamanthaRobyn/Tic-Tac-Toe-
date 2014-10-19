@@ -9,8 +9,8 @@ body {
 	font-color: black;
 	font-size: 30px;
     position: absolute;
-    margin-left: 700px;
-    margin-bottom: 350px;
+    margin-left: 500px;
+    margin-bottom: 500px;
     z-index: 1;
 }	
 .xWinRight {
@@ -18,17 +18,28 @@ body {
 	font-size: 30px;
     position: absolute;
     margin-right: 700px;
-    margin-bottom: 350px;
+    margin-bottom: 500px;
 	z-index: 1;
 }
 
 
-.oWin {
-	position: absolute;
-	z-index: 1;
-	margin-left: auto;
-	margin-right: auto;
+.oWinLeft {
+	font-color: black;
+	font-size: 30px;
+    position: absolute;
+    margin-left: 500px;
+    margin-bottom: 500px;
+    z-index: 1;
 
+}
+
+.oWinRight {
+	font-color: black;
+	font-size: 30px;
+    position: absolute;
+    margin-right: 500px;
+    margin-bottom: 500px;
+    z-index: 1;
 }
 
 .catsGame {
