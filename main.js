@@ -6,6 +6,19 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
   $firebase(ticTacRef);
   FB=($scope.remoteGameContainer);
 
+  $scope.cellList = [
+    {status: "A"},
+    {status: "B"},
+    {status: "C"},
+    {status: "D"},
+    {status: "E"},
+    {status: "F"},
+    {status: "G"},
+    {status: "H"},
+    {status: "I"}
+  ];
+
+  $scope.moveCounter = 0;
 
   ticTacRef.once("value", function(data) {
     console.log(data.val());
@@ -65,7 +78,7 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
     if ($scope.gameContainer.moveCount <= 4) {
       return;
     }
-    var currentPlayer = xo == "X" ? 1: 2; 
+    var currentPlayer = xo == "X" ? 1: 2;
 
     if ($scope.gameContainer.cellListArray[0].status == xo &&
         $scope.gameContainer.cellListArray[1].status == xo &&
@@ -116,7 +129,6 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
       $scope.gameContainer.gameState = currentPlayer;
     }
     
-
 	// this will establish a cat's game 
     if ($scope.gameContainer.moveCount == 9 && $scope.gameContainer.gameState == 0) {
         $scope.gameContainer.gameState = 3;
@@ -124,7 +136,7 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
     console.log("Kiss my ass",$scope.gameContainer.gameState)
 };
 
-  $scope.testJS = function() {
+   $scope.testJS = function() {
     $scope.gameContainer.cellListArray = [
 
     {status: "A"},
@@ -141,7 +153,6 @@ TTTApp.controller('TTTController', function($scope,$firebase) {
     $scope.gameContainer.moveCount = 0 ;
 
     $scope.gameContainer.gameState = 0;
-
   };
 
-});
+  });
