@@ -1,5 +1,5 @@
 {
-  "firebase": "samticcattoeapp",
+  "firebase": "ticcattoe",
   "public": ".",
   "ignore": [
     "firebase.json",

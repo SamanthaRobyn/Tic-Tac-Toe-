@@ -1,7 +1,7 @@
 var TTTApp = angular.module('TTTApp', ["firebase"]);
 var FB;
 TTTApp.controller('TTTController', function($scope,$firebase) {
-  var ticTacRef = new Firebase("https://samticcattoeapp.firebaseio.com/");
+  var ticTacRef = new Firebase("https://ticcattoe.firebaseio.com/");
   $scope.remoteGameContainer =
   $firebase(ticTacRef);
   FB=($scope.remoteGameContainer);
