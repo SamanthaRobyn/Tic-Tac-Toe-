@@ -136,7 +136,7 @@ $scope.testJS = function() {
     if ($scope.gameContainer.moveCount == 9 && $scope.gameContainer.gameState == 0) {
         $scope.gameContainer.gameState = 3;
     } 
-    console.log("Kiss my ass",$scope.gameContainer.gameState)
+    console.log("hello",$scope.gameContainer.gameState)
 };
 
    $scope.testJS = function() {
