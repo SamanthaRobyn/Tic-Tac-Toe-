@@ -16,11 +16,10 @@ body {
 	font-color: black;
 	font-size: 30px;
     position: absolute;
-    margin-right: 700px;
+    right: 10px;
     margin-bottom: 500px;
 	z-index: 1;
 }
-
 
 .oWinLeft {
 	font-color: black;
@@ -36,7 +35,7 @@ body {
 	font-color: black;
 	font-size: 30px;
     position: absolute;
-    margin-right: 500px;
+    right: -25px;
     margin-bottom: 500px;
     z-index: 1;
 }
@@ -91,9 +90,6 @@ h1 {
 .allCellsAlways:hover {
 	background-color: rgb(107,7,37);
 	border-color: white;
-	background-color: black;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .allCellsAlways {

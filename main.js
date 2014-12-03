@@ -80,7 +80,8 @@ $scope.testJS = function() {
     if ($scope.gameContainer.moveCount <= 4) {
       return;
     }
-    var currentPlayer = xo == "X" ? 1: 2;
+    var currentPlayer = xo == "X"? 1: 2;
+
 
     if ($scope.gameContainer.cellListArray[0].status == xo &&
         $scope.gameContainer.cellListArray[1].status == xo &&
